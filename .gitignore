@@ -1,0 +1,5 @@
+# any env files
+.env*
+
+# any files stored in /etc directory
+etc/
