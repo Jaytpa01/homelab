@@ -5,7 +5,6 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "80:80/tcp"
     environment:
       TZ: "Australia/Sydney"
     env_file:
@@ -13,7 +12,13 @@ services:
     volumes:
       - "./etc/pihole:/etc/pihole"
       - "./etc/dnsmasq.d:/etc/dnsmasq.d"
+    networks:
+      - backend
     dns:
       # fixes "[✗] DNS resolution is currently unavailable" - https://www.reddit.com/r/pihole/comments/zmm0rs/solution_cant_update_gravity_dns_resolution_is/
       - 127.0.0.1
     restart: unless-stopped
+
+networks:
+  backend:
+    external: true
